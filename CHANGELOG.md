@@ -1,5 +1,13 @@
 # Changelog
 
+## UNRELEASED
+
+### Added
+- Added a runtime validation step to interrupt the build if the user has
+   configured an unsupported runtime.
+- Added a warning if the python version implied by `runtime` is not available in
+   the build environment. Falls back to a system python.
+
 
 ## [1.0.7] - 2019-03-14 - Fixes for multi-value headers
 
