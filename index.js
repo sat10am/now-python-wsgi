@@ -1,13 +1,11 @@
 const path = require('path');
-const execa = require('execa');
 const { readFile } = require('fs.promised');
 const getWritableDirectory = require('@now/build-utils/fs/get-writable-directory.js'); // eslint-disable-line import/no-extraneous-dependencies
 const download = require('@now/build-utils/fs/download.js'); // eslint-disable-line import/no-extraneous-dependencies
 const glob = require('@now/build-utils/fs/glob.js'); // eslint-disable-line import/no-extraneous-dependencies
 const { createLambda } = require('@now/build-utils/lambda.js'); // eslint-disable-line import/no-extraneous-dependencies
 
-const pip = require('./pip');
-const log = require('./log');
+const { log, pip, python } = require('./build-utils');
 
 
 exports.config = {
@@ -23,9 +21,8 @@ exports.build = async ({ files, entrypoint, config }) => {
   );
   log.info(`Build AMI version: ${systemReleaseContents.trim()}`);
 
-  const pythonVersion = await execa('python3', ['--version']);
   const runtime = config.runtime || 'python3.6';
-  log.info(`Build python version: ${pythonVersion.stdout}`);
+  python.validateRuntime(runtime);
   log.info(`Lambda runtime: ${runtime}`);
 
   const wsgiMod = entrypoint.split('.').shift().replace(/\//g, '.');
@@ -33,16 +30,18 @@ exports.build = async ({ files, entrypoint, config }) => {
   const wsgiApplication = `${wsgiMod}.${wsgiApplicationName}`;
   log.info(`WSGI application: ${wsgiApplication}`);
 
-  log.heading('Downloading project');
-  const srcDir = await getWritableDirectory();
-
-  // eslint-disable-next-line no-param-reassign
-  files = await download(files, srcDir);
-
-  log.heading('Preparing python');
+  log.heading('Selecting python version');
+  const pythonBin = await python.findPythonBinary(runtime);
   const pyUserBase = await getWritableDirectory();
   process.env.PYTHONUSERBASE = pyUserBase;
-  const pipPath = await pip.downloadAndInstallPip();
+
+  log.heading('Installing pip');
+  const pipPath = await pip.downloadAndInstallPip(pythonBin);
+
+  log.heading('Downloading project');
+  const srcDir = await getWritableDirectory();
+  // eslint-disable-next-line no-param-reassign
+  files = await download(files, srcDir);
 
   log.heading('Installing handler');
   await pip.install(pipPath, srcDir, __dirname);
