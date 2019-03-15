@@ -20,7 +20,8 @@ from werkzeug._compat import (BytesIO, string_types, to_bytes,
                               wsgi_encoding_dance)
 
 if sys.version_info[0] < 3:
-    from urllib import urlparse, unquote
+    from urllib import unquote
+    from urlparse import urlparse
 else:
     from urllib.parse import urlparse, unquote
 
