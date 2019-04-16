@@ -1,6 +1,12 @@
 # Changelog
 
 
+## [1.0.8] - 2019-04-16 - Organization migration
+
+### Changed
+- Migrated NPM and GitHub repositories to updated organization
+
+
 ## [1.0.7] - 2019-03-14 - Fixes for multi-value headers
 
 ### Changed
@@ -77,6 +83,7 @@ We're just getting started. This establishes a tidy repository ready for the
 world.
 
 
+[1.0.8]: https://github.com/ardnt/now-python-wsgi/compare/v1.0.7...v1.0.8
 [1.0.7]: https://github.com/ardent-co/now-python-wsgi/compare/v1.0.6...v1.0.7
 [1.0.6]: https://github.com/ardent-co/now-python-wsgi/compare/v1.0.5...v1.0.6
 [1.0.5]: https://github.com/ardent-co/now-python-wsgi/compare/v1.0.4...v1.0.5
