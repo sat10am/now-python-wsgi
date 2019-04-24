@@ -5,6 +5,7 @@
 
 ### Changed
 - Migrated NPM and GitHub repositories to updated organization
+- Updated readme to match new repository
 
 
 ## [1.0.7] - 2019-03-14 - Fixes for multi-value headers
