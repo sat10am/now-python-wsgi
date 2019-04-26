@@ -1,6 +1,6 @@
 # Changelog
 
-## UNRELEASED
+## [1.0.9] - 2019-04-26 - Python 2.7 support
 
 ### Added
 - Added a runtime validation step to interrupt the build if the user has
@@ -95,6 +95,7 @@ We're just getting started. This establishes a tidy repository ready for the
 world.
 
 
+[1.0.9]: https://github.com/ardnt/now-python-wsgi/compare/v1.0.8...v1.0.9
 [1.0.8]: https://github.com/ardnt/now-python-wsgi/compare/v1.0.7...v1.0.8
 [1.0.7]: https://github.com/ardent-co/now-python-wsgi/compare/v1.0.6...v1.0.7
 [1.0.6]: https://github.com/ardent-co/now-python-wsgi/compare/v1.0.5...v1.0.6
