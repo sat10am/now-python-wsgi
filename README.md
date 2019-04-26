@@ -76,16 +76,16 @@ $ now
 ## Requirements
 
 Your project may optionally include a `requirements.txt` file to declare any
-dependencies. If you do include a requirements file, `Werkzeug` must appear as
-a dependency, e.g.:
+dependencies, e.g.:
 
 ```
 # requirements.txt
-Werkzeug >=0.14,<1
+Django >=2.2,<2.3
 ```
 
-If no `requirements.txt` file is included, then the builder will install
-`Werkzeug` to ensure handler dependencies are met.
+Be aware that the builder will install `Werkzeug` as a requirement of the
+handler. This can cause issues if your project requires a different version of
+`Werkzeug` than the handler.
 
 
 ## Configuration options

@@ -7,7 +7,9 @@
    configured an unsupported runtime.
 - Added a warning if the python version implied by `runtime` is not available in
    the build environment. Falls back to a system python.
-- Tests for Python 2.7
+- Tests for Python 2.7.
+- Updated requirements discussion in `README.md` to be consistent with revised
+   requirements handling.
 
 
 ## [1.0.8] - 2019-04-16 - Organization migration
