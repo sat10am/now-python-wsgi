@@ -1,6 +1,6 @@
 {
   "name": "@ardnt/now-python-wsgi",
-  "version": "1.0.8",
+  "version": "1.0.9-dev.2",
   "description": "Python builder for WSGI applications on Zeit Now",
   "main": "index.js",
   "repository": "https://github.com/ardnt/now-python-wsgi.git",
@@ -8,6 +8,7 @@
   "license": "MIT",
   "private": false,
   "dependencies": {
+    "command-exists": "^1.2.8",
     "execa": "^1.0.0",
     "fs.promised": "^3.0.0",
     "node-fetch": "^2.2.0"

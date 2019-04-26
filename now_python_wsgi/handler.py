@@ -20,7 +20,8 @@ from werkzeug._compat import (BytesIO, string_types, to_bytes,
                               wsgi_encoding_dance)
 
 if sys.version_info[0] < 3:
-    from urllib import urlparse, unquote
+    from urllib import unquote
+    from urlparse import urlparse
 else:
     from urllib.parse import urlparse, unquote
 
@@ -41,25 +42,6 @@ TEXT_MIME_TYPES = [
     'application/vnd.api+json',
     'image/svg+xml',
 ]
-
-
-def all_casings(input_string):
-    """
-    Permute all casings of a given string.
-    A pretty algoritm, via @Amber
-    http://stackoverflow.com/questions/6792803
-    """
-    if not input_string:
-        yield ""
-    else:
-        first = input_string[:1]
-        if first.lower() == first.upper():
-            for sub_casing in all_casings(input_string[1:]):
-                yield first + sub_casing
-        else:
-            for sub_casing in all_casings(input_string[1:]):
-                yield first.lower() + sub_casing
-                yield first.upper() + sub_casing
 
 
 def handler(app, lambda_event, context):
