@@ -1,3 +1,4 @@
+const path = require('path');
 const { sync: commandExists } = require('command-exists');
 const execa = require('execa');
 
@@ -9,10 +10,32 @@ const runtimeBinaryMap = {
   'python3.6': 'python36',
 };
 
-
-const fallbackBinaryMap = {
-  python36: 'python3',
+const runtimePrebuiltMap = {
+  'python3.6': {
+    repo: 'https://centos6.iuscommunity.org/ius-release.rpm',
+    binaryName: 'python3.6',
+    packageName: 'python36u',
+  },
 };
+
+
+async function downloadAndInstallPython(runtime) {
+  log.subheading('Installing python from package');
+
+  if (!(runtime in runtimePrebuiltMap)) {
+    throw new Error(`Installing python is not supported for ${runtime}`);
+  }
+
+  const { binaryName, packageName, repo } = runtimePrebuiltMap[runtime];
+
+  const repoInstall = await execa('yum', ['install', '-y', repo]);
+  log.info(repoInstall.stdout);
+
+  const packInstall = await execa('yum', ['install', '-y', packageName]);
+  log.info(packInstall.stdout);
+
+  return path.join(binaryName);
+}
 
 
 async function findPythonBinary(runtime) {
@@ -26,17 +49,8 @@ async function findPythonBinary(runtime) {
     return binaryName;
   }
 
-  // TODO: If binary is not found, attempt install
-
-  if (!(binaryName in fallbackBinaryMap)) {
-    throw new Error(`Unable to find fallback binary for ${binaryName}`);
-  }
-  const fallbackBinary = fallbackBinaryMap[binaryName];
-  log.warning(`Unable to find matching python for ${binaryName}, falling back `
-              + `to ${fallbackBinary}`);
-  const fallbackVersion = await execa(fallbackBinary, ['--version']);
-  log.warning(`${fallbackBinary} is ${fallbackVersion.stdout}`);
-  return fallbackBinary;
+  // Attempt to build from source if the binary is not available
+  return downloadAndInstallPython(runtime);
 }
 
 
