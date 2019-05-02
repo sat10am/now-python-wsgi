@@ -1,0 +1,8 @@
+{
+    "version": 2,
+    "name": "now-python-wsgi-example",
+    "builds": [{
+        "src": "index.py",
+        "use": "@ardnt/now-python-wsgi"
+    }]
+}
