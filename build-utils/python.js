@@ -1,4 +1,3 @@
-const path = require('path');
 const { sync: commandExists } = require('command-exists');
 const execa = require('execa');
 
@@ -34,7 +33,7 @@ async function downloadAndInstallPython(runtime) {
   const packInstall = await execa('yum', ['install', '-y', packageName]);
   log.info(packInstall.stdout);
 
-  return path.join(binaryName);
+  return binaryName;
 }
 
 
