@@ -1,5 +1,11 @@
 # Changelog
 
+## UNRELEASED
+
+### Added
+- Added step to install Python 3.6 when it is missing in the build environment
+
+
 ## [1.0.9] - 2019-04-26 - Python 2.7 support
 
 ### Added

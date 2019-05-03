@@ -1,9 +1,7 @@
 const path = require('path');
-const fetch = require('node-fetch');
 const execa = require('execa');
-const { createWriteStream } = require('fs');
-const getWritableDirectory = require('@now/build-utils/fs/get-writable-directory.js'); // eslint-disable-line import/no-extraneous-dependencies
 
+const download = require('./download');
 const log = require('./log');
 
 const url = 'https://bootstrap.pypa.io/get-pip.py';
@@ -22,26 +20,6 @@ async function install(pipPath, srcDir, ...args) {
 }
 
 
-async function downloadGetPipScript() {
-  const res = await fetch(url);
-
-  if (!res.ok || res.status !== 200) {
-    throw new Error(`Could not download "get-pip.py" from "${url}"`);
-  }
-
-  const dir = await getWritableDirectory();
-  const filePath = path.join(dir, 'get-pip.py');
-  const writeStream = createWriteStream(filePath);
-
-  return new Promise((resolve, reject) => {
-    res.body
-      .on('error', reject)
-      .pipe(writeStream)
-      .on('finish', () => resolve(filePath));
-  });
-}
-
-
 async function downloadAndInstallPip(pythonBin) {
   log.subheading('Installing pip');
 
@@ -50,7 +28,7 @@ async function downloadAndInstallPip(pythonBin) {
       'Could not install "pip": "PYTHONUSERBASE" env var is not set',
     );
   }
-  const getPipFilePath = await downloadGetPipScript();
+  const getPipFilePath = await download.file(url, 'get-pip.py');
 
   log.info(`Running "${pythonBin} get-pip.py"`);
   try {
