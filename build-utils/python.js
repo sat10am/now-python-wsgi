@@ -1,17 +1,11 @@
 const { sync: commandExists } = require('command-exists');
-const execa = require('execa');
 
 const log = require('./log');
 
 
 const runtimeBinaryMap = {
   'python2.7': 'python27',
-  'python3.6': 'python36',
-};
-
-
-const fallbackBinaryMap = {
-  python36: 'python3',
+  'python3.6': 'python3.6',
 };
 
 
@@ -26,17 +20,7 @@ async function findPythonBinary(runtime) {
     return binaryName;
   }
 
-  // TODO: If binary is not found, attempt install
-
-  if (!(binaryName in fallbackBinaryMap)) {
-    throw new Error(`Unable to find fallback binary for ${binaryName}`);
-  }
-  const fallbackBinary = fallbackBinaryMap[binaryName];
-  log.warning(`Unable to find matching python for ${binaryName}, falling back `
-              + `to ${fallbackBinary}`);
-  const fallbackVersion = await execa(fallbackBinary, ['--version']);
-  log.warning(`${fallbackBinary} is ${fallbackVersion.stdout}`);
-  return fallbackBinary;
+  throw new Error(`Unable to find binary ${binaryName} for runtime ${runtime}`);
 }
 
 
