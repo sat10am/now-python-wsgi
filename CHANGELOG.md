@@ -4,6 +4,7 @@
 
 ### Changed
 - Updated runtime and binary checking for new Zeit container
+- Upgraded dependencies
 
 
 ## [1.0.9] - 2019-04-26 - Python 2.7 support
