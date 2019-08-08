@@ -2,8 +2,8 @@
 
 ## UNRELEASED
 
-### Added
-- Added step to install Python 3.6 when it is missing in the build environment
+### Changed
+- Updated runtime and binary checking for new Zeit container
 
 
 ## [1.0.9] - 2019-04-26 - Python 2.7 support
