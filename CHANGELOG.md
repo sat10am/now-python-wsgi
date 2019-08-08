@@ -1,6 +1,6 @@
 # Changelog
 
-## UNRELEASED
+## [1.0.10] - 2019-08-08 - Python 3.6 fix
 
 ### Changed
 - Updated runtime and binary checking for new Zeit container
@@ -102,6 +102,7 @@ We're just getting started. This establishes a tidy repository ready for the
 world.
 
 
+[1.0.10]: https://github.com/ardnt/now-python-wsgi/compare/v1.0.9...v1.0.10
 [1.0.9]: https://github.com/ardnt/now-python-wsgi/compare/v1.0.8...v1.0.9
 [1.0.8]: https://github.com/ardnt/now-python-wsgi/compare/v1.0.7...v1.0.8
 [1.0.7]: https://github.com/ardent-co/now-python-wsgi/compare/v1.0.6...v1.0.7
