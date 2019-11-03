@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.11] - 2019-11-03 - Upgrade eslint-utils & werkzeug
+
+### Changed
+- Upgraded packages
+
+
 ## [1.0.10] - 2019-08-08 - Python 3.6 fix
 
 ### Changed
@@ -102,6 +108,7 @@ We're just getting started. This establishes a tidy repository ready for the
 world.
 
 
+[1.0.11]: https://github.com/ardnt/now-python-wsgi/compage/v1.0.10...v1.0.11
 [1.0.10]: https://github.com/ardnt/now-python-wsgi/compare/v1.0.9...v1.0.10
 [1.0.9]: https://github.com/ardnt/now-python-wsgi/compare/v1.0.8...v1.0.9
 [1.0.8]: https://github.com/ardnt/now-python-wsgi/compare/v1.0.7...v1.0.8
