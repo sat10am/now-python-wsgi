@@ -18,6 +18,6 @@ setup(
         'now_python_wsgi'
     ],
     install_requires=[
-        'Werkzeug==0.14.1',
+        'Werkzeug==0.16.0',
     ]
 )
