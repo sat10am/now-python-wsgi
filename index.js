@@ -15,11 +15,6 @@ exports.config = {
 
 exports.build = async ({ files, entrypoint, config }) => {
   log.title('Starting build');
-  const systemReleaseContents = await readFile(
-    path.join('/etc', 'system-release'),
-    'utf8',
-  );
-  log.info(`Build AMI version: ${systemReleaseContents.trim()}`);
 
   const runtime = config.runtime || 'python3.6';
   python.validateRuntime(runtime);
