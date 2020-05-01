@@ -32,7 +32,7 @@ async function downloadAndInstallPip(pythonBin) {
 
   log.info(`Running "${pythonBin} get-pip.py"`);
   try {
-    const ret = await execa(pythonBin, [getPipFilePath, '--user']);
+    const ret = await execa(pythonBin, [getPipFilePath]);
     log.info(ret.stdout);
   } catch (err) {
     log.error('Could not install pip');
